@@ -15,5 +15,10 @@
 
 </div>
 
+<!-- flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+@stack('js')
+
+@stack('css')
 </body>
 </html>

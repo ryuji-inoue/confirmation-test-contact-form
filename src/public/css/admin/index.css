@@ -1,0 +1,178 @@
+body {
+    background-color: #d6cfc7;
+    font-family: serif;
+}
+
+.admin {
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.admin__title {
+    text-align: center;
+    font-size: 26px;
+    color: #7a6a5f;
+    margin-bottom: 30px;
+}
+
+/* 検索フォーム */
+.admin__search {
+    margin-bottom: 20px;
+}
+
+.admin__search form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.admin__input,
+.admin__select,
+.admin__date {
+    padding: 8px;
+    border: none;
+    background-color: #f3f1ef;
+    font-size: 13px;
+}
+
+.admin__input {
+    width: 250px;
+}
+
+.admin__button {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.admin__button--search {
+    background-color: #7a6a5f;
+    color: #fff;
+}
+
+.admin__button--reset {
+    background-color: #cbb9a6;
+    color: #fff;
+}
+
+.admin__button--export {
+    background-color: #e5ded6;
+    margin-bottom: 10px;
+}
+
+/* テーブル */
+.admin__table-wrapper {
+    background-color: #fff;
+    padding: 0;
+}
+
+.admin__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin__table thead {
+    background-color: #7a6a5f;
+    color: #fff;
+}
+
+.admin__table th,
+.admin__table td {
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.admin__detail-button {
+    background-color: #e5ded6;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+/* ページネーション */
+.admin__pagination {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.admin__pagination span {
+    display: inline-block;
+    margin: 0 4px;
+    padding: 4px 8px;
+    background-color: #f3f1ef;
+    cursor: pointer;
+}
+
+.admin__pagination .active {
+    background-color: #7a6a5f;
+    color: #fff;
+}
+
+/* ===== モーダル ===== */
+
+/* checkbox非表示 */
+.admin__modal-toggle {
+    display: none;
+}
+
+/* 背景 */
+.admin__modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+/* チェックされたら表示 */
+.admin__modal-toggle:checked~.admin__modal {
+    display: flex;
+}
+
+/* モーダル本体 */
+.admin__modal-content {
+    background: #fff;
+    width: 600px;
+    padding: 40px;
+    position: relative;
+    border-radius: 6px;
+}
+
+/* 閉じるボタン */
+.admin__modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* 内容行 */
+.admin__modal-row {
+    display: flex;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.admin__modal-row span:first-child {
+    width: 180px;
+    font-weight: bold;
+}
+
+/* 削除ボタン */
+.admin__modal-delete {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.admin__delete-button {
+    background-color: #c0392b;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    cursor: pointer;
+}
