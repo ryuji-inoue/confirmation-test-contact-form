@@ -3,8 +3,8 @@
 @section('title', 'お問い合わせ確認画面')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/contact/confirm.css') }}">
 
-    <h1 class="confirm__title">FashionablyLate</h1>
     <h2 class="confirm__subtitle">Confirm</h2>
 
     <div class="confirm-table">

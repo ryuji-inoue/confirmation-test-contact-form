@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/layouts/common.css') }}">
+    @stack('css')
 </head>
 <body>
 

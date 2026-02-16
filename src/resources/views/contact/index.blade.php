@@ -1,13 +1,13 @@
-<!DOCTYPE html>
 @extends('layouts.app')
 
 @section('title', 'お問い合わせフォーム')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/contact/contact.css') }}">
 
     <h2 class="contact__subtitle">Contact</h2>
 
-    <form action="#" method="POST" class="contact-form">
+    <form method="POST" action="{{ route('contact.confirm') }}">
         @csrf
 
         <div class="contact-form__group">
