@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
@@ -17,7 +18,7 @@ class ContactController extends Controller
 
         return view('contact.index', [
             'categories' => $categories,
-            'contact'    => $request->all() // ← これを追加
+            'contact'    => $request->all()
         ]);
     }
 
@@ -33,49 +34,26 @@ class ContactController extends Controller
         return view('contact.confirm', compact('contact'));
     }
 
-
-    public function confirmTest()
-    {
-        $contact = [
-            'first_name'    => '山田',
-            'last_name'     => '太郎',
-            'gender'        => 1,
-            'email'         => 'test@example.com',
-            'tel1'          => '080',
-            'tel2'          => '1234',
-            'tel3'          => '5678',
-            'address'       => '東京都渋谷区千駄ヶ谷1-2-3',
-            'building'      => '千駄ヶ谷マンション101',
-            'category_name' => '商品の交換について',
-            'message'       => "届いた商品が注文した商品ではありませんでした。\n商品の取り替えをお願いします。"
-        ];
-
-        return view('contact.confirm', compact('contact'));
-    }
-
-
     /**
-     * PG03 サンクスページ
+     * サンクスページ
      */
     public function thanks(Request $request)
     {
-        // セッションから入力データを取得
+        $data = $request->all();
 
-        /*
-        $data = $request->session()->get('contact_input');
+        Contact::create([
+            'category_id' => $data['contact_type'],
+            'first_name'  => $data['first_name'],
+            'last_name'   => $data['last_name'],
+            'gender'      => $data['gender'],
+            'email'       => $data['email'],
+            'tel'         => $data['tel1'] . $data['tel2'] . $data['tel3'],
+            'address'     => $data['address'],
+            'building'    => $data['building'] ?? null,
+            'detail'      => $data['message'],
+        ]);
 
-        if (!$data) {
-            // 入力データがない場合はトップにリダイレクト
-            return redirect('/');
-        }
-
-        // セッションの入力データを削除
-        $request->session()->forget('contact_input');
-
-        return view('contact.thanks', compact('data'));
-
-        */
-
-        return view('contact.thanks');
+        //リダイレクト
+        return redirect('/thanks');
     }
 }
