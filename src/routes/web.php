@@ -26,8 +26,10 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::get('/', [ContactController::class, 'index'])->name('contact.index');
 
 // PG02 お問い合わせフォーム確認ページ
-Route::get('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
-//Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
+Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
+Route::post('/', [ContactController::class, 'index']);
+
+Route::get('/confirm-test', [ContactController::class, 'confirmTest']);
 
 // PG03 サンクスページ
 Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');

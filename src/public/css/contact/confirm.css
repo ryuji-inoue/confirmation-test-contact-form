@@ -23,6 +23,10 @@ body {
     color: #6b5b53;
 }
 
+.confirm__form {
+    display: inline-block;
+}
+
 .confirm-table {
     width: 100%;
     border: 1px solid #ddd;
@@ -61,6 +65,15 @@ body {
 
 .confirm__buttons {
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.confirm__buttons form {
+    width: auto;
+    margin: 0;
 }
 
 .btn {
@@ -68,7 +81,6 @@ body {
     font-size: 16px;
     border: none;
     cursor: pointer;
-    margin: 0 10px;
 }
 
 .btn--submit {

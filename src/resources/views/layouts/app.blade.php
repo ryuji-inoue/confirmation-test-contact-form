@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/layouts/common.css') }}">
+
     @stack('css')
 </head>
 <body>
@@ -20,6 +21,5 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 @stack('js')
 
-@stack('css')
 </body>
 </html>
