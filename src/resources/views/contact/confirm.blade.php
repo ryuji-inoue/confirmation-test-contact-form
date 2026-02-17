@@ -15,7 +15,7 @@
     <div class="confirm-table__row">
         <div class="confirm-table__label">お名前</div>
         <div class="confirm-table__value">
-            {{ $contact['first_name'] }}{{ $contact['last_name'] }}
+            {{ $contact['last_name'] }}{{ $contact['first_name'] }}
         </div>
     </div>
 

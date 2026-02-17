@@ -25,16 +25,16 @@
     <div class="contact-form__group">
         <label>お名前 <span class="required">※</span></label>
         <div class="contact-form__name">
-            <input type="text" name="first_name"
+            <input type="text" name="last_name"
                 placeholder="例: 山田"
                 value="{{ old('first_name', $contact['first_name'] ?? '') }}">
 
-            <input type="text" name="last_name"
+            <input type="text" name="first_name"
                 placeholder="例: 太郎"
                 value="{{ old('last_name', $contact['last_name'] ?? '') }}">
         </div>
-        @error('first_name') <div class="contact-form__error">{{ $message }}</div> @enderror
         @error('last_name') <div class="contact-form__error">{{ $message }}</div> @enderror
+        @error('first_name') <div class="contact-form__error">{{ $message }}</div> @enderror        
     </div>
 
     {{-- 性別 --}}

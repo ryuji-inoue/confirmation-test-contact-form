@@ -45,18 +45,66 @@
                     <th></th>
                 </tr>
             </thead>
+
             <tbody>
-                @for ($i = 0; $i < 7; $i++)
+                @foreach ($contacts as $contact)
+
                 <tr>
-                    <td>山田 太郎</td>
-                    <td>男性</td>
-                    <td>test@example.com</td>
-                    <td>商品の交換について</td>
+                    <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
                     <td>
-                        <label for="modal-toggle" class="admin__detail-button">詳細</label>
+                        @if($contact->gender === 1)
+                            男性
+                        @elseif($contact->gender === 2)
+                            女性
+                        @else
+                            その他
+                        @endif
+                    </td>
+                    <td>{{ $contact->email }}</td>
+                    <td>{{ $contact->category?->content }}</td>
+                    <td>
+                        <label for="modal-toggle-{{ $contact->id }}" class="admin__detail-button">詳細</label>
+
+                        <!-- モーダル -->
+                        <input type="checkbox" id="modal-toggle-{{ $contact->id }}" class="admin__modal-toggle">
+                        <div class="admin__modal">
+                            <div class="admin__modal-content">
+                                <label for="modal-toggle-{{ $contact->id }}" class="admin__modal-close">×</label>
+
+                                <div class="admin__modal-body">
+                                    <div class="admin__modal-row"><span>お名前</span><span>{{ $contact->last_name }} {{ $contact->first_name }}</span></div>
+                                    <div class="admin__modal-row"><span>性別</span>
+                                        <span>
+                                            @if($contact->gender === 1)
+                                                男性
+                                            @elseif($contact->gender === 2)
+                                                女性
+                                            @else
+                                                その他
+                                            @endif
+                                        </span>
+                                    </div>
+                                    <div class="admin__modal-row"><span>メールアドレス</span><span>{{ $contact->email }}</span></div>
+                                    <div class="admin__modal-row"><span>電話番号</span><span>{{ $contact->tel }}</span></div>
+                                    <div class="admin__modal-row"><span>住所</span><span>{{ $contact->address }}</span></div>
+                                    <div class="admin__modal-row"><span>建物名</span><span>{{ $contact->building }}</span></div>
+                                    <div class="admin__modal-row"><span>お問い合わせの種類</span><span>{{ $contact->category?->content }}</span></div>
+                                    <div class="admin__modal-row"><span>お問い合わせ内容</span><span>{{ $contact->detail }}</span></div>
+
+                                    <div class="admin__modal-delete">
+                                        <form method="POST" action="{{ route('admin.delete', $contact->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="admin__delete-button">削除</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </td>
                 </tr>
-                @endfor
+                @endforeach
             </tbody>
         </table>
     </div>

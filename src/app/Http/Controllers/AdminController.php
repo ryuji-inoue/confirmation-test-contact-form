@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contact; // お問い合わせデータ用モデル
+use App\Models\Contact;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -25,11 +25,13 @@ class AdminController extends Controller
     {
         $keyword = $request->input('keyword');
 
-        $contacts = Contact::query()
+        $contacts = Contact::with('category') // カテゴリを一緒に取得
             ->when($keyword, function ($query, $keyword) {
-                $query->where('name', 'like', "%{$keyword}%")
-                      ->orWhere('email', 'like', "%{$keyword}%")
-                      ->orWhere('contact_type', 'like', "%{$keyword}%");
+                $query->where(function($q) use ($keyword) {
+                    $q->where('first_name', 'like', "%{$keyword}%")
+                    ->orWhere('last_name', 'like', "%{$keyword}%")
+                    ->orWhere('email', 'like', "%{$keyword}%");
+                });
             })
             ->latest()
             ->paginate(10);
