@@ -6,31 +6,58 @@
 
     <!-- 検索フォーム -->
     <div class="admin__search">
-        <form method="GET" action="#">
-            <input type="text" name="keyword" class="admin__input" placeholder="お名前やメールアドレスを入力してください">
+        <form method="GET" action="{{ route('admin.index') }}">
 
+            {{-- 名前 --}}
+            <input type="text"
+                name="keyword"
+                class="admin__input"
+                value="{{ request('keyword') }}"
+                placeholder="名前やメールアドレスを入力して下さい。">
+
+            {{-- 性別 --}}
             <select name="gender" class="admin__select">
-                <option value="">性別</option>
-                <option value="male">男性</option>
-                <option value="female">女性</option>
+                <option value="" disabled selected>性別</option>
+                <option value="all" {{ request('gender') === 'all' ? 'selected' : '' }}>全て</option>
+                <option value="1" {{ request('gender') == 1 ? 'selected' : '' }}>男性</option>
+                <option value="2" {{ request('gender') == 2 ? 'selected' : '' }}>女性</option>
+                <option value="3" {{ request('gender') == 3 ? 'selected' : '' }}>その他</option>
             </select>
 
-            <select name="category" class="admin__select">
-                <option value="">お問い合わせの種類</option>
-                <option value="exchange">商品の交換について</option>
-                <option value="refund">返品について</option>
+            {{-- お問い合わせの種類 --}}
+            <select name="category_id" class="admin__select">
+                    <option value="" disabled selected>お問い合わせの種類</option>
+                    <option value="all" {{ request('gender') === 'all' ? 'selected' : '' }}>全て</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}"
+                        {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                        {{ $category->content }}
+                    </option>
+                @endforeach
             </select>
 
-            <input type="text" name="date" class="admin__date" id="datePicker" placeholder="年/月/日">
+            {{-- 日付 --}}
+            <input type="date"
+                name="date"
+                class="admin__date"
+                value="{{ request('date') }}">
 
-            <button type="submit" class="admin__button admin__button--search">検索</button>
-            <button type="reset" class="admin__button admin__button--reset">リセット</button>
+            <button type="submit" class="admin__button admin__button--search">
+                検索
+            </button>
+
+            <a href="{{ route('admin.index') }}"
+               class="admin__button admin__button--reset">
+                リセット
+            </a>
         </form>
     </div>
 
     <!-- エクスポート -->
     <div class="admin__export">
-        <button class="admin__button admin__button--export">エクスポート</button>
+        <a href="{{ route('admin.export', request()->query()) }}"class="admin__button admin__button--export">
+            エクスポート
+        </a>
     </div>
 
     <!-- テーブル -->
@@ -119,56 +146,6 @@
     </div>
 
 </div>
-
-<!-- モーダル用checkbox -->
-<input type="checkbox" id="modal-toggle" class="admin__modal-toggle">
-
-<!-- モーダル -->
-<div class="admin__modal">
-    <div class="admin__modal-content">
-        <label for="modal-toggle" class="admin__modal-close">×</label>
-
-        <div class="admin__modal-body">
-            <div class="admin__modal-row">
-                <span>お名前</span>
-                <span>山田 太郎</span>
-            </div>
-            <div class="admin__modal-row">
-                <span>性別</span>
-                <span>男性</span>
-            </div>
-            <div class="admin__modal-row">
-                <span>メールアドレス</span>
-                <span>test@example.com</span>
-            </div>
-            <div class="admin__modal-row">
-                <span>電話番号</span>
-                <span>08012345678</span>
-            </div>
-            <div class="admin__modal-row">
-                <span>住所</span>
-                <span>東京都渋谷区千駄ヶ谷1-2-3</span>
-            </div>
-            <div class="admin__modal-row">
-                <span>建物名</span>
-                <span>千駄ヶ谷マンション101</span>
-            </div>
-            <div class="admin__modal-row">
-                <span>お問い合わせの種類</span>
-                <span>商品の交換について</span>
-            </div>
-            <div class="admin__modal-row">
-                <span>お問い合わせ内容</span>
-                <span>届いた商品が注文と異なっていました。商品の交換をお願いします。</span>
-            </div>
-
-            <div class="admin__modal-delete">
-                <button class="admin__delete-button">削除</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 @endsection
 
 

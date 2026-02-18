@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contact;
 use Illuminate\Support\Facades\Storage;
+
+use App\Models\Contact;
+use App\Models\Category;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminController extends Controller
@@ -14,29 +16,16 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        $contacts = Contact::latest()->paginate(10);
-        return view('admin.index', compact('contacts'));
-    }
+        $contacts = Contact::with('category')
+                ->KeywordSearch($request->keyword)
+                ->GenderSearch($request->gender)
+                ->CategorySearch($request->category_id)
+                ->DateSearch($request->date)
+                ->paginate(7)
+                ->appends($request->all());
 
-    /**
-     * 検索
-     */
-    public function search(Request $request)
-    {
-        $keyword = $request->input('keyword');
-
-        $contacts = Contact::with('category') // カテゴリを一緒に取得
-            ->when($keyword, function ($query, $keyword) {
-                $query->where(function($q) use ($keyword) {
-                    $q->where('first_name', 'like', "%{$keyword}%")
-                    ->orWhere('last_name', 'like', "%{$keyword}%")
-                    ->orWhere('email', 'like', "%{$keyword}%");
-                });
-            })
-            ->latest()
-            ->paginate(10);
-
-        return view('admin.index', compact('contacts'));
+        $categories = Category::all();
+        return view('admin.index', compact('contacts', 'categories'));
     }
 
     /**
@@ -61,9 +50,14 @@ class AdminController extends Controller
     /**
      * エクスポート（CSV形式で出力）
      */
-    public function export()
+    public function export(Request $request)
     {
-        $contacts = Contact::all();
+         $contacts = Contact::with('category')
+        ->KeywordSearch($request->keyword)
+        ->GenderSearch($request->gender)
+        ->CategorySearch($request->category_id)
+        ->DateSearch($request->date)
+        ->get();
 
         $filename = 'contacts_export_' . date('Ymd_His') . '.csv';
 
@@ -74,22 +68,39 @@ class AdminController extends Controller
 
         $callback = function() use ($contacts) {
             $handle = fopen('php://output', 'w');
-            // ヘッダー行
-            fputcsv($handle, ['ID', '名前', '性別', 'メール', '電話番号', '住所', 'お問い合わせ種類', '内容', '作成日']);
+            // ヘッダー行(モーダルと同じ)
+            fputcsv($handle, [
+                'お名前',
+                '性別',
+                'メールアドレス',
+                '電話番号',
+                '住所',
+                '建物名',
+                'お問い合わせの種類',
+                'お問い合わせ内容'
+            ]);
             
-            foreach ($contacts as $contact) {
-                fputcsv($handle, [
-                    $contact->id,
-                    $contact->name,
-                    $contact->gender,
-                    $contact->email,
-                    $contact->phone,
-                    $contact->address,
-                    $contact->contact_type,
-                    $contact->message,
-                    $contact->created_at,
-                ]);
-            }
+           foreach ($contacts as $contact) {
+
+            $gender = match ($contact->gender) {
+                1 => '男性',
+                2 => '女性',
+                3 => 'その他',
+                default => ''
+            };
+
+            fputcsv($handle, [
+                $contact->last_name . ' ' . $contact->first_name,
+                $gender,
+                $contact->email,
+                $contact->tel,
+                $contact->address,
+                $contact->building, 
+                optional($contact->category)->content,
+                $contact->detail,
+            ]);
+        }
+
 
             fclose($handle);
         };

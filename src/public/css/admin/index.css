@@ -57,9 +57,14 @@ body {
     color: #fff;
 }
 
+.admin__export {
+    margin: 20px 0;
+}
+
 .admin__button--export {
     background-color: #e5ded6;
     margin-bottom: 10px;
+    display: inline-block;
 }
 
 /* テーブル */
