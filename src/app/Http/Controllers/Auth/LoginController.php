@@ -12,7 +12,7 @@ class LoginController extends Controller
     /**
      * ログインフォーム表示
      */
-    public function showLoginForm()
+    public function index()
     {
         return view('auth.login');
     }

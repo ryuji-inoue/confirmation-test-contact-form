@@ -10,12 +10,18 @@
 
             <div class="login__group">
                 <label class="login__label">メールアドレス</label>
-                <input type="email" name="email" class="login__input" placeholder="例: test@example.com">
+                <input type="email" name="email" class="login__input"  value="{{ old('email') }}" placeholder="例: test@example.com">
+                @error('email')
+                    <p class="error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="login__group">
                 <label class="login__label">パスワード</label>
                 <input type="password" name="password" class="login__input" placeholder="例: coachtech1106">
+                @error('password')
+                    <p class="error">{{ $message }}</p>
+                @enderror                
             </div>
 
             <div class="login__button-area">

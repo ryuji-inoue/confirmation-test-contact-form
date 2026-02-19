@@ -7,6 +7,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,12 +59,24 @@ Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
 // =======================
 
 // ユーザ登録
+
+/*
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('auth.register');
-Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+
 
 // ログイン
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('auth.login');
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login')
+    ->middleware(['web', 'guest']);
+*/
+
+// ログイン
+//Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+// ログイン処理
 Route::post('/login', [LoginController::class, 'login']);
 
+
 // ログアウト
-Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');

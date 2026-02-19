@@ -53,11 +53,39 @@
         </form>
     </div>
 
-    <!-- エクスポート -->
-    <div class="admin__export">
-        <a href="{{ route('admin.export', request()->query()) }}"class="admin__button admin__button--export">
-            エクスポート
-        </a>
+    <div class="admin__export-pagination">
+
+        <!-- エクスポート -->
+        <div class="admin__export">
+            <a href="{{ route('admin.export', request()->query()) }}"class="admin__button admin__button--export">
+                エクスポート
+            </a>
+        </div>
+        <!-- ページネーション -->
+        <div class="admin__pagination">
+                    {{-- 前 --}}
+                @if ($contacts->onFirstPage())
+                    <span class="disabled">‹</span>
+                @else
+                    <a href="{{ $contacts->previousPageUrl() }}">‹</a>
+                @endif
+
+                {{-- 数字 --}}
+                @for ($i = 1; $i <= $contacts->lastPage(); $i++)
+                    @if ($i == $contacts->currentPage())
+                        <span class="active">{{ $i }}</span>
+                    @else
+                        <a href="{{ $contacts->url($i) }}">{{ $i }}</a>
+                    @endif
+                @endfor
+
+                {{-- 次 --}}
+                @if ($contacts->hasMorePages())
+                    <a href="{{ $contacts->nextPageUrl() }}">›</a>
+                @else
+                    <span class="disabled">›</span>
+                @endif
+        </div>
     </div>
 
     <!-- テーブル -->
@@ -136,27 +164,14 @@
         </table>
     </div>
 
-    <!-- ページネーション -->
-    <div class="admin__pagination">
-        <span class="active">1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
-    </div>
+
 
 </div>
 @endsection
 
-
-
-@push('js')
-<script>
-    flatpickr("#datePicker", {
-        dateFormat: "Y/m/d",
-        locale: "ja"
-    });
-</script>
+@section('header-buttons')
+    <a href="{{ route('logout') }}" class="wrapper__logout-button">logout</a>
+@endsection
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">

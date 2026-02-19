@@ -11,15 +11,16 @@
 
 <div class="wrapper">
 
-    <h1 class="wrapper__title">FashionablyLate</h1>
+    <!-- タイトル -->
+    <div class="wrapper__header">
+        <h1 class="wrapper__title">FashionablyLate</h1>
+
+    <!-- ボタン用スペース -->
+        @yield('header-buttons')
+    </div>
 
     @yield('content')
-
 </div>
-
-<!-- flatpickr JS -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-@stack('js')
 
 </body>
 </html>

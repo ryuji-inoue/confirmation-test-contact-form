@@ -5,22 +5,32 @@
     <h2 class="register__title">Register</h2>
 
     <div class="register__card">
-        <form method="POST" action="{{ route('register') }}">
+        <form class="form" action="/register" method="post">
             @csrf
 
             <div class="register__group">
                 <label class="register__label">お名前</label>
-                <input type="text" name="name" class="register__input" placeholder="例: 山田　太郎">
+                <input type="text" name="name" class="register__input" value="{{ old('name') }}" placeholder="例: 山田　太郎" >
+                @error('name')
+                    <p class="error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="register__group">
                 <label class="register__label">メールアドレス</label>
-                <input type="email" name="email" class="register__input" placeholder="例: test@example.com">
+                <input type="email" name="email" class="register__input"  value="{{ old('email') }}" placeholder="例: test@example.com">
+                @error('email')
+                    <p class="error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="register__group">
                 <label class="register__label">パスワード</label>
                 <input type="password" name="password" class="register__input" placeholder="例: coachtech1106">
+
+                @error('password')
+                    <p class="error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="register__button-area">
