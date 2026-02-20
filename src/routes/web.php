@@ -42,7 +42,9 @@ Route::get('/thanks', function () {return view('contact.thanks');});
 
 // 管理画面
 // 検索機能はindex側に寄せる
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+});
 
 // 検索リセット
 Route::get('/reset', [AdminController::class, 'reset'])->name('admin.reset');

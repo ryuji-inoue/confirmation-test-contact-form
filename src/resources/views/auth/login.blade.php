@@ -36,3 +36,7 @@
 @push('css')
 <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
 @endpush
+
+@section('header-buttons')
+    <a href="{{ route('register') }}" class="wrapper__register-button">register</a>
+@endsection

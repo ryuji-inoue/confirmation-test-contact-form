@@ -43,10 +43,22 @@ body {
 
 .wrapper__login-button {
     position: absolute;
-    right: 50;
+    right: 200px;
     background-color: #6b5b53;
     color: white;
     padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+.wrapper__register-button {
+    position: absolute;
+    right: 200px;
+    background-color: #dbdbdb;
+    color: #adadad;
+    padding: 8px 20px;
     border-radius: 5px;
     text-decoration: none;
     font-size: 14px;

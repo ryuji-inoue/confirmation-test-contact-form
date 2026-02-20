@@ -16,6 +16,11 @@
         <h1 class="wrapper__title">FashionablyLate</h1>
 
     <!-- ボタン用スペース -->
+
+    @if (Auth::check())
+
+    @endif
+    
         @yield('header-buttons')
     </div>
 

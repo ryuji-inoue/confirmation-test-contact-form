@@ -177,3 +177,8 @@
 <link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">
 
 @endpush
+
+
+@section('header-buttons')
+    <a href="{{ route('login') }}" class="wrapper__register-button">login</a>
+@endsection
