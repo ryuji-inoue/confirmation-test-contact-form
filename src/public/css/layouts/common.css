@@ -1,3 +1,6 @@
+/* ================================
+   Layout
+================================ */
 body {
     margin: 0;
     font-family: serif;
@@ -5,7 +8,7 @@ body {
 }
 
 .wrapper {
-    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 0;
 }
@@ -30,36 +33,27 @@ body {
     text-align: center;
 }
 
-.wrapper__logout-button {
-    position: absolute;
-    right: 200px;
-    background-color: #dbdbdb;
-    color: #adadad;
+/* ================================
+   Button (共通部品化)
+================================ */
+.btn {
     padding: 8px 20px;
     border-radius: 5px;
     text-decoration: none;
     font-size: 14px;
+    display: inline-block;
 }
 
-.wrapper__login-button {
-    position: absolute;
-    right: 200px;
+.btn--primary {
     background-color: #6b5b53;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 14px;
+    color: #ffffff;
 }
 
-
-.wrapper__register-button {
-    position: absolute;
-    right: 200px;
+.btn--secondary {
     background-color: #dbdbdb;
-    color: #adadad;
-    padding: 8px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 14px;
+    color: #555;
+}
+
+.btn:hover {
+    opacity: 0.8;
 }

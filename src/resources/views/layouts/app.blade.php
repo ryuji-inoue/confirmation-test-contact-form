@@ -2,29 +2,29 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('css/layouts/common.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'FashionablyLate')</title>
 
+    <link rel="stylesheet" href="{{ asset('css/layouts/common.css') }}">
     @stack('css')
 </head>
+
 <body>
 
 <div class="wrapper">
 
-    <!-- タイトル -->
-    <div class="wrapper__header">
+    <header class="wrapper__header">
         <h1 class="wrapper__title">FashionablyLate</h1>
 
-    <!-- ボタン用スペース -->
+        <div class="wrapper__buttons">
+            @yield('header-buttons')
+        </div>
+    </header>
 
-    @if (Auth::check())
+    <main class="wrapper__content">
+        @yield('content')
+    </main>
 
-    @endif
-    
-        @yield('header-buttons')
-    </div>
-
-    @yield('content')
 </div>
 
 </body>

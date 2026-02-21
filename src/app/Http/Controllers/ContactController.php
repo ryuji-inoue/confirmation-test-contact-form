@@ -28,10 +28,11 @@ class ContactController extends Controller
     public function confirm(ContactRequest $request)
     {
         $contact = $request->validated();
-
         $request->session()->put('contact_input', $contact);
 
-        return view('contact.confirm', compact('contact'));
+        $category = Category::find($contact['contact_type']);
+
+        return view('contact.confirm', compact('contact', 'category'));
     }
 
     /**
@@ -50,7 +51,7 @@ class ContactController extends Controller
             'tel'         => $data['tel1'] . $data['tel2'] . $data['tel3'],
             'address'     => $data['address'],
             'building'    => $data['building'] ?? null,
-            'detail'      => $data['message'],
+            'detail'      => $data['detail'],
         ]);
 
         //リダイレクト

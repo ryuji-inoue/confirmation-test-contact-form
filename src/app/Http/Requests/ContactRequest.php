@@ -49,7 +49,7 @@ class ContactRequest extends FormRequest
             'contact_type' => 'required',
 
             // 8. お問い合わせ内容
-            'message' => 'required|string|max:120',
+            'detail' => 'required|string|max:120',
             ];
     }
 
@@ -61,6 +61,9 @@ class ContactRequest extends FormRequest
             'last_name.required'  => '姓を入力してください',
             'first_name.required' => '名を入力してください',
 
+            'last_name.max'  => '姓は、8文字以下にしてください。',
+            'first_name.max' => '名は、8文字以下にしてください。',
+            
             // 2. 性別
             'gender.required' => '性別を選択してください',
 
@@ -88,8 +91,8 @@ class ContactRequest extends FormRequest
             'contact_type.required' => 'お問い合わせの種類を選択してください',
 
             // 8. お問い合わせ内容
-            'message.required' => 'お問い合わせ内容を入力してください',
-            'message.max'      => 'お問い合わせ内容は120文字以内で入力してください',
+            'detail.required' => 'お問い合わせ内容を入力してください',
+            'detail.max'      => 'お問い合わせ内容は120文字以内で入力してください',
         ];
     }    
 }
