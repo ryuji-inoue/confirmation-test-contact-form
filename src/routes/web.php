@@ -41,10 +41,7 @@ Route::get('/thanks', function () {return view('contact.thanks');});
 // =======================
 
 // 管理画面
-// 検索機能はindex側に寄せる
-Route::middleware('auth')->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-});
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
 // 検索リセット
 Route::get('/reset', [AdminController::class, 'reset'])->name('admin.reset');
@@ -61,24 +58,10 @@ Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
 // =======================
 
 // ユーザ登録
-
-/*
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('auth.register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
-
 // ログイン
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-    ->name('login')
-    ->middleware(['web', 'guest']);
-*/
-
-// ログイン
-//Route::get('/login', [LoginController::class, 'index'])->name('login');
-
-// ログイン処理
 Route::post('/login', [LoginController::class, 'login']);
-
 
 // ログアウト
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');

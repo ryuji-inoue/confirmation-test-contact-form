@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
         ];
     }
@@ -33,10 +33,11 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'お名前を入力してください。',
-            'email.required' => 'メールアドレスを入力してください。',
-            'email.email' => 'メールアドレスはメール形式で入力してください。',
-            'password.required' => 'パスワードを入力してください。',
+            'name.required' => 'お名前を入力してください',
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレスはメール形式で入力してください',
+            'email.unique' => 'このメールアドレスは既に登録されています',
+            'password.required' => 'パスワードを入力してください',
         ];
     }   
 }

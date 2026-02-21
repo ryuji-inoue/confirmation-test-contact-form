@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('show-title', true)
+@section('title', '管理画面')
 
 @section('content')
 <div class="admin">
@@ -170,7 +172,7 @@
 @endsection
 
 @section('header-buttons')
-    <a href="{{ route('logout') }}" class="wrapper__logout-button">logout</a>
+    <a href="{{ route('logout') }}" class="btn--primary">logout</a>
 @endsection
 
 @push('css')

@@ -61,8 +61,8 @@ class ContactRequest extends FormRequest
             'last_name.required'  => '姓を入力してください',
             'first_name.required' => '名を入力してください',
 
-            'last_name.max'  => '姓は、8文字以下にしてください。',
-            'first_name.max' => '名は、8文字以下にしてください。',
+            'last_name.max'  => '姓は 8文字以下にしてください。',
+            'first_name.max' => '名は 8文字以下にしてください。',
             
             // 2. 性別
             'gender.required' => '性別を選択してください',

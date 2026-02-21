@@ -31,6 +31,7 @@
 .contact-form__group label {
     display: block;
     color: #6b5b53;
+    text-align: left;
 }
 
 .contact-form__group--textarea {
@@ -60,8 +61,6 @@ textarea {
 .contact-form__name input {
     width: 50%;
 }
-
-
 
 .contact-form__radio {
     display: flex;
@@ -110,20 +109,4 @@ textarea {
     color: #d8000c !important;
     font-size: 16px;
     margin-top: 5px;
-}
-
-.contact__alert--success {
-    background-color: #dff2bf;
-    color: #4f8a10;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-}
-
-.contact__alert--danger {
-    background-color: #ffbaba;
-    color: #d8000c;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
 }

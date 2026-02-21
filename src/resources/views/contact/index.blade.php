@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('show-title', true)
 
 @section('title', 'お問い合わせフォーム')
 

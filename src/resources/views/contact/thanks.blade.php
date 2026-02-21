@@ -1,3 +1,4 @@
+@extends('layouts.app')
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('css/contact/thanks.css') }}">

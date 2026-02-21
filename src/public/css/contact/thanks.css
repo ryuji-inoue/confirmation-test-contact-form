@@ -4,7 +4,7 @@
 
 .thanks {
     position: relative;
-    height: 60vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +13,7 @@
 .thanks::before {
     content: "Thank you";
     position: absolute;
-    font-size: 150px;
+    font-size: 240px;
     color: #000;
     opacity: 0.05;
     z-index: 0;
@@ -27,7 +27,8 @@
 }
 
 .thanks__message {
-    font-size: 18px;
+    font-size: 22px;
+    font-weight: bold;
     margin-bottom: 30px;
     color: #6b5b53;
 }

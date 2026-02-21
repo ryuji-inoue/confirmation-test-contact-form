@@ -1,5 +1,5 @@
 /* ================================
-   Layout
+   レイアウト
 ================================ */
 body {
     margin: 0;
@@ -27,26 +27,28 @@ body {
 .wrapper__title {
     font-size: 28px;
     color: #6b5b53;
-    margin-bottom: 20px;
+}
 
-    padding-bottom: 10px;
-    text-align: center;
+
+.wrapper__content {
+    min-height: calc(100vh - 80px);
 }
 
 /* ================================
-   Button (共通部品化)
+   ボタン
 ================================ */
-.btn {
+.wrapper__buttons {
+    position: absolute;
+    right: 200px;
+}
+
+.btn--primary {
+    background-color: #dbdbdb;
+    color: #adadad;
     padding: 8px 20px;
     border-radius: 5px;
     text-decoration: none;
     font-size: 14px;
-    display: inline-block;
-}
-
-.btn--primary {
-    background-color: #6b5b53;
-    color: #ffffff;
 }
 
 .btn--secondary {
@@ -56,4 +58,14 @@ body {
 
 .btn:hover {
     opacity: 0.8;
+}
+
+/* ================================
+   エラーメッセージ
+================================ */
+
+.msg--error {
+    color: #d8000c !important;
+    font-size: 16px;
+    margin-top: 5px;
 }

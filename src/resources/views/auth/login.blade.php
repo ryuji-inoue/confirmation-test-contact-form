@@ -1,31 +1,34 @@
 @extends('layouts.app')
+@section('show-title', true)
+
+@section('title', 'ログイン')
 
 @section('content')
-<div class="login">
-    <h2 class="login__title">Login</h2>
+<div class="auth">
+    <h2 class="auth__title">auth</h2>
 
-    <div class="login__card">
+    <div class="auth__card">
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div class="login__group">
-                <label class="login__label">メールアドレス</label>
-                <input type="email" name="email" class="login__input"  value="{{ old('email') }}" placeholder="例: test@example.com">
+            <div class="auth__group">
+                <label class="auth__label">メールアドレス</label>
+                <input type="email" name="email" class="auth__input"  value="{{ old('email') }}" placeholder="例: test@example.com">
                 @error('email')
-                    <p class="error">{{ $message }}</p>
+                    <p class="msg--error">{{ $message }}</p>
                 @enderror
             </div>
 
-            <div class="login__group">
-                <label class="login__label">パスワード</label>
-                <input type="password" name="password" class="login__input" placeholder="例: coachtech1106">
+            <div class="auth__group">
+                <label class="auth__label">パスワード</label>
+                <input type="password" name="password" class="auth__input" placeholder="例: coachtech1106">
                 @error('password')
-                    <p class="error">{{ $message }}</p>
+                    <p class="msg--error">{{ $message }}</p>
                 @enderror                
             </div>
 
-            <div class="login__button-area">
-                <button type="submit" class="login__button">ログイン</button>
+            <div class="auth__button-area">
+                <button type="submit" class="auth__button">ログイン</button>
             </div>
 
         </form>
@@ -34,9 +37,9 @@
 @endsection
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
+<link rel="stylesheet" href="{{ asset('css/auth/auth.css') }}">
 @endpush
 
 @section('header-buttons')
-    <a href="{{ route('register') }}" class="wrapper__register-button">register</a>
+    <a href="{{ route('register') }}" class="btn--primary">register</a>
 @endsection
