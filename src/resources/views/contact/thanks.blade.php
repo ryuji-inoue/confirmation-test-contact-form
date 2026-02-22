@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'サンクスページ')
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('css/contact/thanks.css') }}">

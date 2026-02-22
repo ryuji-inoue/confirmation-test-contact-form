@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="auth">
-    <h2 class="auth__title">auth</h2>
+    <h2 class="auth__title">Login</h2>
 
     <div class="auth__card">
         <form method="POST" action="{{ route('login') }}">
