@@ -154,6 +154,14 @@
     border-bottom: 1px solid #eee;
 }
 
+/* ホバー機能 */
+.admin__table tbody tr:hover {
+    background-color: #f0f8ff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
 .admin__detail-button {
     background-color: #e5ded6;
     border: none;
