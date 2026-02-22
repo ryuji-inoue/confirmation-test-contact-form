@@ -6,7 +6,7 @@
 ### Docker ビルド
     ```bash
     # リポジトリをクローン
-    ・git clone -b develop https://github.com/ryuji-inoue/confirmation-test-contact-form.git .
+    ・git clone https://github.com/ryuji-inoue/confirmation-test-contact-form.git .
 
     # Docker コンテナをビルド・起動
     ・docker-compose up -d --build
