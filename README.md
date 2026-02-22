@@ -42,4 +42,4 @@
     ・jQuery 3.7.1.min.js
 
 ### ER図
-![ER図](docs/database_er.drawio.png)
+![ER図](docs/database_er.png)
